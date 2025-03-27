@@ -97,5 +97,6 @@ const updateTodo = async (req, res) => {
 module.exports = {
   createTodo,
   fetchTodos,
-  deleteTodo
+  deleteTodo,
+  updateTodo
 };
