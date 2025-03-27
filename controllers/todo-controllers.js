@@ -48,7 +48,31 @@ const fetchTodos = async (req, res) => {
     }
 }
 
+const deleteTodo = async (req, res) => {
+    try{
+        const todo = await Todo.findByIdAndDelete(req.params.id)
+        if(!todo) {
+            return res.status(400).json({
+                success: false,
+                message: "todo not found",
+            })
+        }
+        res.status(200).json({
+            success: true,
+            message: "todo deleted successfully",
+            data: todo
+        })
+    } catch (err) {
+        console.log(err)
+        res.status(500).json({
+            success: false,
+            message: "error deleting todo"
+        })
+    }
+}
+
 module.exports = {
   createTodo,
-  fetchTodos
+  fetchTodos,
+  deleteTodo
 };
